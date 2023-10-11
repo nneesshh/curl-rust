@@ -9,7 +9,7 @@ repository = "https://github.com/alexcrichton/curl-rust"
 description = "Native bindings to the libcurl library"
 documentation = "https://docs.rs/curl-sys"
 categories = ["external-ffi-bindings"]
-edition = "2018"
+edition = "2021"
 
 [badges]
 travis-ci = { repository = "alexcrichton/curl-rust" }
@@ -20,9 +20,9 @@ name = "curl_sys"
 path = "lib.rs"
 
 [dependencies]
-libz-sys = { version = "1.0.18", default-features = false, features = ["libc"] }
-libc = "0.2.2"
-libnghttp2-sys = { optional = true, version = "0.1.3" }
+libz-sys = { version = "1", default-features = false, features = ["libc"] }
+libc = "0.2"
+libnghttp2-sys = { optional = true, version = "0.1" }
 
 [dependencies.rustls-ffi]
 version = "0.8"
@@ -30,7 +30,7 @@ optional = true
 features = ["no_log_capture"]
 
 [target.'cfg(all(unix, not(target_os = "macos")))'.dependencies]
-openssl-sys = { version = "0.9.64", optional = true }
+openssl-sys = { path = "../../rust-openssl/openssl-sys", optional = true }
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3", features = ["winsock2", "ws2def"] }
@@ -39,18 +39,16 @@ winapi = { version = "0.3", features = ["winsock2", "ws2def"] }
 vcpkg = "0.2"
 
 [build-dependencies]
-pkg-config = "0.3.3"
-cc = "1.0"
+pkg-config = "0.3"
+cc = "1"
 
 [features]
-default = ["ssl"]
+default = ["ssl", "static-curl"]
 ssl = ["openssl-sys"]
 http2 = ["libnghttp2-sys"]
 mesalink = []
 rustls = ["rustls-ffi"]
 static-curl = []
-windows-static-ssl = []
-static-ssl = ["openssl-sys/vendored"]
 spnego = []
 force-system-lib-on-osx = []
 protocol-ftp = []
