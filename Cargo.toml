@@ -30,7 +30,7 @@ schannel = "0.1"
 winapi = { version = '0.3', features = ['libloaderapi', 'wincrypt'] }
 
 [dev-dependencies]
-mio = "0.6"
+mio = { path="../mio", features = ["os-poll"] }
 mio-extras = "2"
 anyhow = "1"
 
