@@ -43,7 +43,7 @@ pkg-config = "0.3"
 cc = "1"
 
 [features]
-default = ["ssl", "static-curl"]
+default = ["static-curl"]
 ssl = ["openssl-sys"]
 http2 = ["libnghttp2-sys"]
 mesalink = []
